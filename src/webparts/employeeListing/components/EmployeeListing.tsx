@@ -265,62 +265,11 @@ export default class EmployeeListing extends React.Component<IEmployeeListingPro
             </DialogFooter>
           </Dialog>
         </div>
-
-        {/* <div className='updialog'>
-          <Dialog
-            hidden={this.state.hideDialogup}>
-            <h1>update</h1>
-            <div className='table'>
-              <table>
-                <tr className='Name1up'>
-                  <td>
-                    Name :
-                  </td>
-                  <td>
-                    <input type="text" id="Name1" value={this.state.Name1 ? this.state.Name1 : ''} onChange={(e) => { this.setState({ Name1: e.target.value }); }} />
-                  </td>
-                </tr>
-                <tr className='DOBup'>
-                  <td>
-                    DOB :
-                  </td>
-                  <td>
-                    <DatePicker id="DOBup"
-                      value={new Date(this.state.DOB)}
-                      onSelectDate={(selectedDate) => {
-                        this.setState({ DOB: selectedDate });
-                      }} />
-                  </td>
-                </tr>
-                <tr className='Experienceup'>
-                  <td>
-                    Experience :
-                  </td>
-                  <td>
-                    <input type="number" id="Experienceup" value={this.state.Experience ? this.state.Experience : ''} onChange={(e) => { this.setState({ Experience: e.target.value }); }} />
-                  </td>
-                </tr>
-                <tr className='Department'>
-                  <td>
-                    Department :
-                  </td>
-                  <td>
-                    <Dropdown placeholder="Select a Department" options={this.state.projectlookupvalues} defaultSelectedKey={this.state.SelectedItemup} onChange={(e, val) => { this.onDropdownchange(e, val) }} ></Dropdown>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <DialogFooter>
-              <PrimaryButton text="Update" onClick={() => { this.UpdateItem(this.state.ItemId) }} />
-              <DefaultButton text="Cancel" onClick={() => { this.setState({ hideDialogup: true }) }} />
-            </DialogFooter>
-          </Dialog>
-        </div> */}
-
       </div>
     );
   }
 
+  // available users in group
   public Groupuser = async () => {
     const groupId = 20;
     let users = await sp.web.siteGroups.getById(groupId).users();
@@ -336,19 +285,16 @@ export default class EmployeeListing extends React.Component<IEmployeeListingPro
     // .then(cur => {
     //   console.log(cur)
     // });
-
     console.log(users);
+  
   }
-
+// current logedin user 
   public async getcurrentuser(): Promise<any> {
     const currentuser = await sp.profiles.userProfile;
     this.setState({
       UserEmail: currentuser.SipAddress,
     },
       () => { this.Groupuser() })
-    // .then(cur => {
-    //   console.log(cur);
-    // });
     console.log(currentuser);
   }
 
